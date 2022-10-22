@@ -18,7 +18,11 @@ books_bp = Blueprint("books", __name__, url_prefix="/books")
 
 @books_bp.route("/<book_id>", methods=["GET"])
 def handle_book(book_id):
-    book_id = int(book_id)
+    try:
+        book_id = int(book_id) 
+    except:
+        return {"message": f"book {book_id} invalid"}, 400
+        # use try and except to handle invalid errors 
     for book in books:
         if book.id == book_id:
             return {
