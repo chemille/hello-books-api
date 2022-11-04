@@ -34,5 +34,4 @@ def test_create_one_book(client):
 
     # Assert
     assert response.status_code == 201
-    print(response_body)
     assert response_body == "Book New Book successfully created"

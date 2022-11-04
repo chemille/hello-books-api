@@ -4,7 +4,6 @@ from flask import Blueprint, jsonify, abort, make_response, request
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
-
 ### helper fxs
 def validate_book(book_id):
     # handle invalid book_id, return 400
@@ -45,13 +44,11 @@ def read_all_books():
     
 @books_bp.route("", methods=["POST"])
 def create_book():
-    print("in create book function")
     request_body = request.get_json()    
     new_book = Book(
         title = request_body["title"],
         description = request_body["description"]
     )
-    print(f"print new book, {new_book}")
     db.session.add(new_book)
     db.session.commit()
     
